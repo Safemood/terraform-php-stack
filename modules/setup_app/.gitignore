@@ -1,0 +1,5 @@
+.env
+.env.backup
+.env.production
+/.idea
+/.vscode

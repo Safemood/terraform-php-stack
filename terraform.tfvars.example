@@ -1,0 +1,38 @@
+ssh_host            = "target IP"
+ssh_user            = "ssh user"
+ssh_key             = ".vagrant/machines/default/virtualbox/private_key"
+php_version         = "8.2"
+node_version        = "16"
+webmaster_email     = "example@test.com"
+mysql_root_password = "crazySecurePassword"
+git_repo            = "git@github.com:laravel/laravel.git"
+db_connexion        = "mysql"
+db_host             = "localhost"
+db_port             = "3306"
+db_name             = "kbouzidi"
+db_user             = "safemood"
+db_password         = "terraform"
+domain_name         = "kbouzidi.com"
+app_env             = "production"
+app_debug           = false
+scheme              = "http" // 'https' will auto assign ssl certificates to your domain                                                   // 'https' this will auto assign ssl certificates to your domain
+stack_modules       = ["dependencies", "node", "nginx", "php", "app", "mysql"] // dependencies","mysql", "nginx", "php","app" 
+system_dependencies = "git tmux vim zip unzip htop fail2ban"
+installation_steps = [
+  # Set Folder Permissions
+  "sudo chmod -R 755 .",
+  "sudo chown -R $USER:www-data .",
+  "sudo chgrp -R www-data storage storage/framework/sessions bootstrap/cache",
+  "sudo chmod -R ug+rwx storage storage/framework/sessions bootstrap/cache",
+  # Installation
+  "composer install --optimize-autoloader --no-dev",
+  "php artisan key:generate --force",
+  "php artisan storage:link --force",
+  "php artisan migrate --seed --force",
+  "php please cache:clear",
+  "sudo php artisan optimize:clear",
+  "npm install",
+  "npm run build",
+  "php artisan optimize",
+]
+
